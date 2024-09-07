@@ -12,23 +12,48 @@ function getComputerChoice() {
     case 3:
       return "Scissors";
       break;
+    default:
+      return "You fucked the math up bro";
   }
-  return "You fucked the math up bro";
 }
 
 //Asks the presumably HUMAN player to select a choice
-function getHumanChoice(c) {
-  switch (c) {
-    case 1:
+function getHumanChoice() {
+  let c = prompt("Select a choice");
+  switch (c.toLowerCase()) {
+    case "1":
+    case "rock":
+    case "r":
       return "Rock";
       break;
-    case 2:
+    case "2":
+    case "paper":
+    case "p":
       return "Paper";
       break;
-    case 3:
+    case "3":
+    case "scissors":
+    case "s":
       return "Scissors";
       break;
+    default:
+      return null;
   }
 }
 
-// console.log(getHumanChoice(4));
+function playRound(humanChoice, computerChoice) {
+  if (humanChoice == null) return "That's not a legal option";
+  
+  if (humanChoice == computerChoice) {
+    return `You picked ${humanChoice}. The computer picked ${computerChoice}. It's a tie`;
+  }
+  return `You picked ${humanChoice}. The computer picked ${computerChoice}. WIP`;
+}
+
+let humanScore = 0;
+let computerScore = 0;
+
+while (true) {
+  let test = playRound(getHumanChoice(), getComputerChoice());
+  console.log(test);
+}

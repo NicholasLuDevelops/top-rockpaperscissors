@@ -1,8 +1,7 @@
-//Generate a number between 1 and 3 (inclusive). Each number is mapped to either Rock, Paper, or Scissors.
+const fistType = ["ROCK", "PAPER", "SCISSOR"];
+
+//Generate a number between 1 and 3 (inclusive). Each number is mapped to either rock, paper, or scissor.
 //Side note: If you say Scissor, Paper, Rock instead you are sick in the head kek.
-
-const fistType = ["ROCK", "PAPER", "SCISSORS"];
-
 function getComputerChoice() {
   let randomChoice = Math.floor(Math.random() * 3 + 1);
   switch (randomChoice) {
@@ -16,11 +15,11 @@ function getComputerChoice() {
       return fistType[2];
       break;
     default:
-      return "You fucked the math up bro";
+      return null;
   }
 }
 
-//Asks the presumably HUMAN player to select a choice
+//Asks the presumably HUMAN player to select a choice between rock, paper, and scissor
 function getHumanChoice() {
   let c = prompt("Select a choice");
   switch (c.toLowerCase()) {
@@ -35,7 +34,7 @@ function getHumanChoice() {
       return fistType[1];
       break;
     case "3":
-    case "scissors":
+    case "scissor":
     case "s":
       return fistType[2];
       break;
@@ -44,22 +43,34 @@ function getHumanChoice() {
   }
 }
 
+/**
+ *
+ * @param {*} humanChoice
+ * @param {*} computerChoice
+ * @returns
+ */
 function playRound(humanChoice, computerChoice) {
-  if (humanChoice == null) return "That's not a legal option";
+  let winMessage = `You picked ${humanChoice}. The computer picked ${computerChoice}. You Win`;
+  let loseMessage = `You picked ${humanChoice}. The computer picked ${computerChoice}. You Lose`;
 
+  //If player chooses an option not given.
+  if (humanChoice == null || computerChoice == null)
+    return "That's not a legal option";
+
+  //If the player ties with the computers.
   if (humanChoice == computerChoice) {
     return `You picked ${humanChoice}. The computer picked ${computerChoice}. It's a tie`;
   }
-  else if (humanChoice == "ROCK") {
-    
+  //Player picks ROCK
+  else if (humanChoice == fistType[0]) {
+    if (computerChoice == fistType[1]) return;
   }
-  else if (humanChoice == "PAPER") {
-
+  //Player picks PAPER
+  else if (humanChoice == fistType[1]) {
   }
-  else if (humanChoice == "SCISSORS") {
-
+  //Player picks Scissors
+  else if (humanChoice == fistType[2]) {
   }
-  return `You picked ${humanChoice}. The computer picked ${computerChoice}. WIP`;
 }
 
 let humanScore = 0;

@@ -15,3 +15,20 @@ function getComputerChoice() {
   }
   return "You fucked the math up bro";
 }
+
+//Asks the presumably HUMAN player to select a choice
+function getHumanChoice(c) {
+  switch (c) {
+    case 1:
+      return "Rock";
+      break;
+    case 2:
+      return "Paper";
+      break;
+    case 3:
+      return "Scissors";
+      break;
+  }
+}
+
+// console.log(getHumanChoice(4));

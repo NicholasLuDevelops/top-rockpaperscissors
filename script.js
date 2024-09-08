@@ -21,7 +21,10 @@ function getComputerChoice() {
 
 //Asks the presumably HUMAN player to select a choice between rock, paper, and scissor
 function getHumanChoice() {
-  let c = prompt("Select a choice");
+  let c = prompt(`Select a choice
+    1. Rock
+    2. Paper
+    3. Scissor`);
   switch (c.toLowerCase()) {
     case "1":
     case "rock":

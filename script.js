@@ -47,36 +47,93 @@ function getHumanChoice() {
  *
  * @param {*} humanChoice
  * @param {*} computerChoice
- * @returns
+ * @returns Message on whether the player wins, loses, or entered an illegal choice
+ *
+ * 0 => ROCK
+ * 1 => PAPER
+ * 2 => SCISSOR
  */
 function playRound(humanChoice, computerChoice) {
-  let winMessage = `You picked ${humanChoice}. The computer picked ${computerChoice}. You Win`;
-  let loseMessage = `You picked ${humanChoice}. The computer picked ${computerChoice}. You Lose`;
-
   //If player chooses an option not given.
-  if (humanChoice == null || computerChoice == null)
+  if (humanChoice == null || computerChoice == null) {
     return "That's not a legal option";
-
+  }
   //If the player ties with the computers.
-  if (humanChoice == computerChoice) {
+  else if (humanChoice == computerChoice) {
     return `You picked ${humanChoice}. The computer picked ${computerChoice}. It's a tie`;
   }
+  // //Player picks ROCK
+  // else if (humanChoice == fistType[0]) {
+  //   //Computer Picks SCISSOR
+  //   if (computerChoice == fistType[2]) return true;
+  //   else return false;
+  // }
+  // //Player picks PAPER
+  // else if (humanChoice == fistType[1]) {
+  //   //Computer picks ROCK
+  //   if (computerChoice == fistType[0]) return true;
+  //   else return false;
+  // }
+  // //Player picks Scissors
+  // else if (humanChoice == fistType[2]) {
+  //   //Computer picks PAPER
+  //   if (computerChoice == fistType[1]) return true;
+  //   else return false;
+  // }
+
   //Player picks ROCK
   else if (humanChoice == fistType[0]) {
-    if (computerChoice == fistType[1]) return;
+    //Computer Picks SCISSOR
+    return computerChoice == fistType[2] ? true : false;
   }
   //Player picks PAPER
   else if (humanChoice == fistType[1]) {
+    //Computer picks ROCK
+    return computerChoice == fistType[0] ? true : false;
   }
   //Player picks Scissors
   else if (humanChoice == fistType[2]) {
+    //Computer picks PAPER
+    return computerChoice == fistType[1] ? true : false;
   }
 }
 
-let humanScore = 0;
-let computerScore = 0;
+/**
+ * Keeps score between human and computer and play until someone wins 5 games
+ */
+function playGame() {
+  let humanScore = 0;
+  let computerScore = 0;
 
-while (true) {
-  let test = playRound(getHumanChoice(), getComputerChoice());
-  console.log(test);
+  // const humanSelection = getHumanChoice();
+  // const computerSelection = getComputerChoice();
+
+  // let winMessage = `You picked ${humanSelection}. The computer picked ${computerSelection}. You Win`;
+  // let loseMessage = `You picked ${humanSelection}. The computer picked ${computerSelection}. You Lose`;
+
+  while (humanScore != 5 && computerScore != 5) {
+    let humanSelection = getHumanChoice();
+    let computerSelection = getComputerChoice();
+    let test = playRound(humanSelection, computerSelection);
+
+    if (test == true) {
+      console.log(
+        `You picked ${humanSelection}. The computer picked ${computerSelection}. You Win`
+      );
+      humanScore++;
+    } else if (test == false) {
+      console.log(
+        `You picked ${humanSelection}. The computer picked ${computerSelection}. You Lose`
+      );
+      computerScore++;
+    } else {
+      console.log(test);
+    }
+
+    console.log(`Score: 
+    Player: ${humanScore}
+    Computer: ${computerScore}`);
+  }
 }
+
+playGame();
